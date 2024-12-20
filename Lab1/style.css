@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box
+}
+
+footer {
+    padding: 1.25rem;
+    background-color: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: red;
+}
+
+.main-menu > li {
+    display: inline;
+    margin-right: 4rem;
+}
+
+a:hover {
+    color:blue
+}
+
+.container {
+    max-width: 75%;
+    margin: auto;
+}
+
+p {
+    text-align: justify;
+}
+
+.picture {
+    height: 500px;
+}
+.picture > img {
+    height: 100%;
+}
+
+
+
+section {
+    margin: 2rem;
+}
+
+header {
+    background-color: rgb(206, 206, 154);
+    padding: 1.25rem;
+}
+
+table, td, th {
+    /* задаем границу для всех элементов */
+    border-collapse: collapse;
+    border: 2px solid;
+  }
+  
+  td, th {
+    /* делаем отступ в ячейках, выставляем выравнивание текста */
+    padding: 10px 20px;
+    text-align: center;
+  }
+
+  .zagolovok {
+    margin: 0.7rem;
+  }
