@@ -1,0 +1,142 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box
+}
+
+footer {
+    padding: 1.25rem;
+    background-color: black;
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+.active {
+    color: tomato;
+}
+
+.main-menu > li {
+    display: inline;
+}
+
+.main-menu {
+    display: flex;
+    gap: 15px;
+    padding-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+a:hover {
+    color: tomato;
+}
+
+a:active {
+    color: tomato;
+}
+
+.container {
+    max-width: 75%;
+    margin: auto;
+}
+
+p {
+    text-align: justify;
+}
+
+.picture {
+    height: 500px;
+}
+.picture > img {
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+section {
+    margin: 2rem;
+}
+
+header {
+    background-color: rgb(206, 206, 154);
+    padding: 1rem;
+}
+
+table, td, th {
+    /* задаем границу для всех элементов */
+    border-collapse: collapse;
+    border: 2px solid;
+}
+  
+td, th {
+    /* делаем отступ в ячейках, выставляем выравнивание текста */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.zagolovok {
+    margin: 0.7rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex-grow: 1
+}
+
+html {
+    height: 100%;
+}
+
+@media all and (max-width: 800px) {
+    section#about {
+        width: 500px;
+    }
+    .main-menu {
+        justify-content: space-between;
+    }
+}
+
+@media all and (max-width: 600px) {
+    h1 {
+        text-align: center;
+    }
+
+    .main-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    a {
+        font-size: 20px;
+    }
+
+    .picture > img {
+        width: 100%;
+    }
+
+    td {
+        font-size: 14px;
+    }
+}
+
+@media all and (max-width: 400px) {
+    td {
+        font-size: 12px;
+    }
+}
