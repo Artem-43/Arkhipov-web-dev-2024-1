@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 const handleFormBtnClick = (event) => {
-    event.preventDefault();
-    let message = ' ';
+    event.preventDefault(); // отменяет поведение по умолчанию
+    let message = 'Заказ успешно отправлен';
     const txt = document.querySelector('.notification');
     if (!(selectedDishes.desert || selectedDishes.drink || selectedDishes.main
         || selectedDishes.salad || selectedDishes.soup)) {
@@ -129,7 +129,11 @@ const handleFormBtnClick = (event) => {
         !(selectedDishes.main || selectedDishes.salad || selectedDishes.soup)) {
         message = 'Выберите главное блюдо';
     } else {
-        orderForm.submit();
+        if (!orderForm.checkValidity()) { // проверка на то, что заполнены все обязательные поля
+            message = 'Пожалуйста, заполните обязательные поля: ФИО, почта, номер телефона и адрес';
+        } else { // обязательные поля заполнены
+            orderForm.submit();
+        };        
     }
 
     txt.textContent = message;
@@ -153,6 +157,8 @@ const handleFormBtnReset = () => {
     orderForm.reset();
     totalCost = 0;
     document.getElementById('cost-value').textContent = totalCost;
+    document.querySelectorAll('[data-dish]').forEach(el => // удаляет подсветку карточек
+        el.classList.remove('selected'));
     // console.log(Boolean(selectedDishes.soup));
     // console.log(Boolean(selectedDishes.main));
     // console.log(Boolean(selectedDishes.salad));

@@ -5,10 +5,10 @@ let dishes = [];
 let totalCost = 0;
 const selectedDishes = {
     soup: null,
-    main: null,
+    'main-course': null,
     salad: null,
     drink: null,
-    desert: null
+    dessert: null
 };
 
 const dialog = document.querySelector('.dialog');
@@ -46,7 +46,7 @@ function addToOrder(keyword) {
     // Обновляем информацию в блоке
     infoContainer.innerHTML = `
         ${categoryKey === 'soup' ? 'Суп' :
-        categoryKey === 'main' ? 'Основное блюдо' :
+        categoryKey === 'main-course' ? 'Основное блюдо' :
             categoryKey === 'salad' ? 'Салат' :
                 categoryKey === 'drink' ? 'Напиток' : 'Десерт'}:<br>
         ${dish.name} - ${dish.price}&#8381;
@@ -109,25 +109,29 @@ function displayDishes() {
 
 const handleFormBtnClick = (event) => {
     event.preventDefault();
-    let message = ' ';
+    let message = 'Заказ успешно отправлен';
     const txt = document.querySelector('.notification');
-    if (!(selectedDishes.desert || selectedDishes.drink || selectedDishes.main
+    if (!(selectedDishes.dessert || selectedDishes.drink || selectedDishes["main-course"]
         || selectedDishes.salad || selectedDishes.soup)) {
         message = 'Ничего не выбрано. Выберите блюда для заказа';
-    } else if (!selectedDishes.drink && (selectedDishes.main 
+    } else if (!selectedDishes.drink && (selectedDishes["main-course"]
         || (selectedDishes.salad && selectedDishes.soup))) { 
         message = 'Выберите напиток';
     } else if (selectedDishes.soup && !(selectedDishes.salad 
-        || selectedDishes.main)) {
+        || selectedDishes["main-course"])) {
         message = 'Выберите главное блюдо/салат/стартер';
     } else if (selectedDishes.salad && 
-        !(selectedDishes.soup || selectedDishes.main)) {
+        !(selectedDishes.soup || selectedDishes["main-course"])) {
         message = 'Выберите суп или главное блюдо';
-    } else if ((selectedDishes.drink || selectedDishes.desert) &&
-        !(selectedDishes.main || selectedDishes.salad || selectedDishes.soup)) {
+    } else if ((selectedDishes.drink || selectedDishes.dessert) &&
+        !(selectedDishes["main-course"] || selectedDishes.salad || selectedDishes.soup)) {
         message = 'Выберите главное блюдо';
     } else {
-        orderForm.submit();
+        if (!orderForm.checkValidity()) { // проверка на то, что заполнены все обязательные поля
+            message = 'Пожалуйста, заполните обязательные поля: ФИО, почта, номер телефона и адрес';
+        } else { // обязательные поля заполнены
+            orderForm.submit();
+        };     
     }
 
     txt.textContent = message;
@@ -165,21 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const handleFormBtnReset = () => {
-    selectedDishes.main = null;
+    selectedDishes["main-course"] = null;
     selectedDishes.salad = null;
     selectedDishes.soup = null;
     selectedDishes.drink = null;
-    selectedDishes.desert = null;
+    selectedDishes.dessert = null;
     document.getElementById('selected-dishes').style.display = 'none';
     document.getElementById('nothing').style.display = 'block';
     orderForm.reset();
     totalCost = 0;
     document.getElementById('cost-value').textContent = totalCost;
-    // console.log(Boolean(selectedDishes.soup));
-    // console.log(Boolean(selectedDishes.main));
-    // console.log(Boolean(selectedDishes.salad));
-    // console.log(Boolean(selectedDishes.drink));
-    // console.log(Boolean(selectedDishes.desert));
+
+    document.querySelectorAll('[data-dish]').forEach(el => // удаляет подсветку карточек
+        el.classList.remove('selected'));
+        
+    console.log(selectedDishes);
 };
 
 formBtn.addEventListener('click', handleFormBtnClick);
