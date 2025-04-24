@@ -330,3 +330,6 @@ dialog {
   cursor: pointer;
 }
 
+.choice_dish {
+    display: none;
+}

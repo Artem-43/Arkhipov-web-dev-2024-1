@@ -13,8 +13,8 @@ const selectedDishes = {
 
 const dialog = document.querySelector('.dialog');
 const dialogButton = document.querySelector('.dialog__btn');
-const orderForm = document.querySelector('.order_form1');
 const formBtn = document.querySelector(".form__btn");
+const orderForm = document.querySelector('.order_form1');
 const resetBtn = document.querySelector('.reset__Btn');
 
 function addToOrder(keyword) {

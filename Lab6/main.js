@@ -11,6 +11,9 @@ const selectedDishes = {
 
 const dialog = document.querySelector('.dialog');
 const dialogButton = document.querySelector('.dialog__btn');
+const formBtn = document.querySelector(".form__btn");
+const orderForm = document.querySelector('.order_form1');
+const resetBtn = document.querySelector('.reset__Btn');
 
 function addToOrder(keyword) {
     const dish = dishes.find(d => d.keyword === keyword);
@@ -115,7 +118,6 @@ const handleFormBtnClick = (event) => {
         message = 'Ничего не выбрано. Выберите блюда для заказа';
     } else if (!selectedDishes.drink && (selectedDishes.main 
         || (selectedDishes.salad && selectedDishes.soup))) { 
-        console.log('dsidhks');           
         message = 'Выберите напиток';
     } else if (selectedDishes.soup && !(selectedDishes.salad 
         || selectedDishes.main)) {
@@ -123,16 +125,12 @@ const handleFormBtnClick = (event) => {
     } else if (selectedDishes.salad && 
         !(selectedDishes.soup || selectedDishes.main)) {
         message = 'Выберите суп или главное блюдо';
-    } else if (selectedDishes.drink || selectedDishes.desert) {
+    } else if ((selectedDishes.drink || selectedDishes.desert) &&
+        !(selectedDishes.main || selectedDishes.salad || selectedDishes.soup)) {
         message = 'Выберите главное блюдо';
+    } else {
+        orderForm.submit();
     }
-
-    console.log(Boolean(selectedDishes.drink));
-    console.log(Boolean(selectedDishes.main));
-    // console.log(Boolean(selectedDishes.drink));
-    // console.log(Boolean(selectedDishes.drink));
-    // console.log(Boolean(selectedDishes.drink));
-    
 
     txt.textContent = message;
     if (message) {
@@ -144,10 +142,24 @@ const handleDialogBtnClick = () => {
     dialog.close();
 };
 
+const handleFormBtnReset = () => {
+    selectedDishes.main = null;
+    selectedDishes.salad = null;
+    selectedDishes.soup = null;
+    selectedDishes.drink = null;
+    selectedDishes.desert = null;
+    document.getElementById('selected-dishes').style.display = 'none';
+    document.getElementById('nothing').style.display = 'block';
+    orderForm.reset();
+    totalCost = 0;
+    document.getElementById('cost-value').textContent = totalCost;
+    // console.log(Boolean(selectedDishes.soup));
+    // console.log(Boolean(selectedDishes.main));
+    // console.log(Boolean(selectedDishes.salad));
+    // console.log(Boolean(selectedDishes.drink));
+    // console.log(Boolean(selectedDishes.desert));
+};
 
-const orderForm = document.querySelector('.order_form1');
-
-
-const formBtn = document.querySelector(".form__btn");
 formBtn.addEventListener('click', handleFormBtnClick);
 dialogButton.addEventListener('click', handleDialogBtnClick);
+resetBtn.addEventListener('click', handleFormBtnReset);

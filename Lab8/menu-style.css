@@ -5,6 +5,11 @@
     box-sizing: border-box
 }
 
+body {
+    display: flex;
+    height: 100%;
+}
+
 footer {
     padding: 1.25rem;
     background-color: black;
@@ -167,69 +172,43 @@ html {
 
 }
 
-.zakaz {
-    text-align: center;
+
+.grid-container1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
-.forms {
+.flex-container1 {
     display: flex;
+    justify-content: space-evenly;
     flex-direction: row;
-    justify-content: flex-start;
+    height: 40px;
+    margin-bottom: 40px;
+
 }
 
-
-.forms div {
-     padding: 10px 40px 10px 40px;
+.icon {
+    justify-items: center;
 }
 
-.order {
-    flex: 1 0 50%;
-}
-.customer {
-    flex: 1 0 50%;
+.icon > img {
+    height: 100%;
+    align-self: center;
 }
 
-h3 {
-    font-weight: normal;
+.icon > p {
+    font-size: 0.9rem;
 }
 
-
-
-.btn {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.btn > button {
-    width: 100%;
-    height: 2rem;
-    background-color: white;
-}
-
-.btn > button:hover {
-    background-color: gray;
-    cursor: pointer;
-}
-
-.order_form {
-    max-width: 75%;
-    margin: auto;
-}
-
-.fix {
-    display: block;
-    width: 100%;
-    height: 2rem;
-}
-
-fieldset {
-    border: 0 none;
-}
-
-textarea {
-    width: 100%;
-    height: 130px;
+.icon:hover {
+    transform: translate(0px, -4px) scale(1.2);
+  }
+  
+.combo {
+    text-align: center;
 }
 
 .selected {
@@ -251,6 +230,7 @@ textarea {
     border-radius: 10px;
     cursor: pointer;
     border-color: transparent;
+    font-size: 1rem;
 }
 
 .filter_button:hover {
@@ -258,6 +238,6 @@ textarea {
     background-color: rgb(204, 246, 227);
 }
 
-.choice_dish {
+.choice {
     display: none;
 }

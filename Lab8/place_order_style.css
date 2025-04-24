@@ -5,6 +5,11 @@
     box-sizing: border-box
 }
 
+body {
+    display: flex;
+    height: 100%;
+}
+
 footer {
     padding: 1.25rem;
     background-color: black;
@@ -232,30 +237,34 @@ textarea {
     height: 130px;
 }
 
-.selected {
-    border: 2px solid;
-    border-radius: 35px;
-    border-color: tomato;
-}
 
-.filter {
+
+dialog {
+    padding: 10px;
+    padding: 50px;
+    border: 1px solid;
+    min-width: 400px;
+    min-height: 200px;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.msg {
     display: flex;
-    margin-top: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.filter_button {
-    margin-right: 40px;
-    color: rgb(8, 198, 53);
-    background-color:  transparent;
-    padding: 5px 15px 5px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    border-color: transparent;
-}
-
-.filter_button:hover {
-    border-radius: 15px;
-    background-color: rgb(204, 246, 227);
+.msg > button {
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid;
+  min-width: 100px;
+  cursor: pointer;
 }
 
 .choice_dish {
