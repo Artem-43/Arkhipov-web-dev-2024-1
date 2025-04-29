@@ -17,8 +17,8 @@ const orderForm = document.querySelector('.order_form1');
 const formBtn = document.querySelector(".form__btn");
 const resetBtn = document.querySelector('.reset__Btn');
 
-function addToOrder(keyword) {
-    const dish = dishes.find(d => d.keyword === keyword);
+function addToOrder(id) {
+    const dish = dishes.find(d => d.id === id);
     if (!dish) return;
 
     const categoryKey = dish.category;
@@ -31,7 +31,7 @@ function addToOrder(keyword) {
     // Убираем стоимость предыдущего выбранного блюда
     if (selectedDishes[categoryKey]) {
         const previousDish = 
-        dishes.find(d => d.keyword === selectedDishes[categoryKey]);
+        dishes.find(d => d.id === selectedDishes[categoryKey]);
         totalCost -= previousDish.price;
 
         // Убираем подсветку с предыдущей карточки
@@ -41,7 +41,7 @@ function addToOrder(keyword) {
     }
 
     // Обновляем выбранное блюдо
-    selectedDishes[categoryKey] = dish.keyword;
+    selectedDishes[categoryKey] = dish.id;
 
     // Обновляем информацию в блоке
     infoContainer.innerHTML = `
@@ -56,7 +56,7 @@ function addToOrder(keyword) {
     document.getElementById(hiddenFieldId).value = dish.keyword;
 
     // Подсветка текущей карточки
-    const currentCard = document.querySelector(`[data-dish="${dish.keyword}"]`);
+    const currentCard = document.querySelector(`[data-dish="${dish.id}"]`);
     if (currentCard) currentCard.classList.add('selected');
 
     // Прибавляем стоимость
@@ -85,7 +85,7 @@ function displayDishes() {
     sortedDishes.forEach(dish => {
         const card = document.createElement('div');
         card.className = `dish product-card ${dish.kind}`;
-        card.setAttribute('data-dish', dish.keyword);
+        card.setAttribute('data-dish', dish.id);
         card.innerHTML = `
             <div class="dish-image">
                 <img src="${dish.image}" alt="${dish.name}">
@@ -101,7 +101,7 @@ function displayDishes() {
             </div>
         `;
         const button = card.querySelector('.dish-button');
-        button.addEventListener('click', () => addToOrder(dish.keyword));
+        button.addEventListener('click', () => addToOrder(dish.id));
         sections[dish.category].appendChild(card);
     });
 }
@@ -183,6 +183,11 @@ const handleFormBtnReset = () => {
     document.querySelectorAll('[data-dish]').forEach(el => // удаляет подсветку карточек
         el.classList.remove('selected'));
 
+    document.getElementById('soup-info').innerHTML = 'Суп<br>Ничего не выбрано';
+    document.getElementById('main-course-info').innerHTML = 'Главное блюдо<br>Ничего не выбрано';
+    document.getElementById('salad-info').innerHTML = 'Салат<br>Ничего не выбрано';
+    document.getElementById('drink-info').innerHTML = 'Напиток<br>Ничего не выбрано';
+    document.getElementById('dessert-info').innerHTML = 'Десерт<br>Ничего не выбрано';
     console.log(selectedDishes);
 };
 
