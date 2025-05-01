@@ -52,12 +52,6 @@
                             <div id="total-cost" class="choice_dish">
                                 Общая стоимость: <span id="cost-value">0</span>&#8381;
                             </div>                 
-                            
-                            <input type="hidden" id="selected-soup" name="soup">
-                            <input type="hidden" id="selected-main-course" name="main">
-                            <input type="hidden" id="selected-salad" name="salad">
-                            <input type="hidden" id="selected-drink" name="drink">
-                            <input type="hidden" id="selected-dessert" name="dessert">
     
                             <div class="choice">
                                 <label for="comment">Комментарии к заказу</label>
@@ -69,7 +63,7 @@
                             <div><h3>Ваши данные</h3></div>
                             <div>
                                 <label for="name">ФИО</label>
-                                <input type="text" id="name" name="Name" required class="fix">
+                                <input type="text" id="name" name="full_name" required class="fix">
                             </div>
     
                             <div>
@@ -78,18 +72,18 @@
                             </div>
     
                             <div>
-                                <input type="checkbox" name="subscription" id="subscription" value="true" checked>
+                                <input type="checkbox" name="subscribe" id="subscription" checked>
                                 <label for="subscription">Получать информацию о скидках и акциях</label>
                             </div>
     
                             <div>
                                 <label for="phone_number">Номер телефона</label>
-                                <input type="tel" name="phone_number" id="phone_number" required class="fix">
+                                <input type="tel" name="phone" id="phone_number" required class="fix">
                             </div>
                                 
                             <div>
                                 <label for="address">Адресс</label>
-                                <input type="text" id="address" name="Address" required class="fix">
+                                <input type="text" id="address" name="delivery_address" required class="fix">
                                 <label for="address">Доставка осуществляется только по Москве</label>
                             </div>
     
@@ -97,18 +91,18 @@
                             <div>
                                 <p>Время доставки</p>
                                 <div>
-                                    <input type="radio" name="Delivery_time" id="faster" value="1">
+                                    <input type="radio" name="delivery_type" id="faster" value="now" required>
                                     <label for="faster">Как можно скорее</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="Delivery_time" id="specified_time" value="1">
+                                    <input type="radio" name="delivery_type" id="specified_time" value="by_time" required>
                                     <label for="specified_time">К указанному времени</label>
                                 </div>
                             </div>
     
                             <div>
                                 <label for="time">Укажите время доставки</label>
-                                <input type="time" name="time" id="time" min="07:00" max="23:00" step="300" class="fix">
+                                <input type="time" name="delivery_time" id="time" min="07:00" max="23:00" step="300" class="fix">
                                 <label for="time">Доступное время доставки с 7:00 до 23:00</label>
                             </div>
     
@@ -120,12 +114,6 @@
                     </div>
                 </form>
             </div>
-    
-            
-    
-            
-
-            
         </main>
 
         <footer id="footer">
@@ -140,5 +128,7 @@
                 <button class="dialog__btn">Окей👌</button>
             </div>
         </dialog>
+
+        <script type="module" src="place_order.js"></script>
     </body>
 </html>
